@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Lato", "Ariel", sans-serif;
+        font-weight: 400;
+        background-color: #f4f4f4;
+        color: black;
+        text-rendering: optimizeLegibility;
+        overflow-x: hidden;
+      }
+      #nav {
+        padding: 1px 3%;
+        padding-right: 6%;
+        margin: 0% 2%;
+        display: flex;
+        flex-flow: row wrap;
+      }
+      #nav p:hover {
+        border-bottom: 3px solid #e67e22;
+        transition: border-bottom 0.2s, color 0.2s;
+      }
+      h1 {
+        letter-spacing: 2px;
+        margin-bottom: 1%;
+        word-spacing: 2px;
+      }
+      #nav p {
+        flex-basis: 7%;
+        font-size: 18px;
+        margin-left: 1%;
+        text-align: center;
+        border-bottom: 3px solid transparent;
+      }
+      #nav > h1 {
+        flex: 1;
+      }
+      .login {
+        margin: 5% auto;
+        width: 30%;
+      }
+
+      #form {
+        width: 100%;
+        margin: 10% 0%;
+        padding: 7% 0px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        flex-flow: column wrap;
+        background-color: white;
+        box-shadow: 40px 20px 20px #97797969;
+      }
+      #form input {
+        width: 60%;
+        height: 25px;
+        margin-bottom: 6%;
+        border-radius: 10px;
+        border-style: hidden;
+        border-bottom-style: solid;
+        transition: transform 0.5s;
+      }
+      #form input:hover {
+        transform: scale(1.1);
+      }
+      #form input:last-child {
+        width: 30%;
+        height: 40px;
+        text-transform: uppercase;
+        border-style: solid;
+        border-radius: 20px;
+        border-color: #e67e22;
+        margin-bottom: 10px;
+      }
+      #form input:last-child:hover {
+        color: white;
+        background-color: #e67e22;
+        border-color: #e67e22;
+        transition: background-color 0.25s, border 0.25s, color 0.25s,
+          transform 0.25s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="section">
+      <div id="nav">
+        <h1>ZING MOVIES</h1>
+        <p id="home">Home</p>
+        <p id="login">Login</p>
+        <p id="signup">Signup</p>
+      </div>
+      <div class="login">
+        <form onsubmit="startLogin(event)" id="form">
+          <input type="text" placeholder="Enter Your Email" id="email" />
+          <input
+            type="number"
+            placeholder="Enter Your Password"
+            id="password"
+          />
+          <input type="submit" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="login.js"></script>
