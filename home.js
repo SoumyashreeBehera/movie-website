@@ -15,58 +15,58 @@ function slideShow() {
 slideShow();
 let movies = [
   {
-    name: "Avengers Endgame",
-    date: "2018",
-    url: "10.jpg",
-    imdb: "8.5",
+    Title: "Avengers Endgame",
+    Released: "2018",
+    Poster: "10.jpg",
+    imdbRating: "8.5",
   },
   {
-    name: "Avengers InfinityWar",
-    date: "2012",
-    url: "9.jpg",
-    imdb: "9",
+    Title: "Avengers InfinityWar",
+    Released: "2012",
+    Poster: "9.jpg",
+    imdbRating: "9",
   },
   {
-    name: "Thor love and thunder",
-    date: "2022",
-    url: "7.jpg",
-    imdb: "9.1",
+    Title: "Thor love and thunder",
+    Released: "2022",
+    Poster: "7.jpg",
+    imdbRating: "9.1",
   },
   {
-    name: "Thor Darkworld",
-    date: "2013",
-    url: "8.jpg",
-    imdb: "8.9",
+    Title: "Thor Darkworld",
+    Released: "2013",
+    Poster: "8.jpg",
+    imdbRating: "8.9",
   },
   {
-    name: "The Incredible Hulk2",
-    date: "2011",
-    url: "6.jpg",
-    imdb: "8.2",
+    Title: "The Incredible Hulk2",
+    Released: "2011",
+    Poster: "6.jpg",
+    imdbRating: "8.2",
   },
   {
-    name: "Black PAnther",
-    date: "2017",
-    url: "4.jpg",
-    imdb: "9.3",
+    Title: "Black PAnther",
+    Released: "2017",
+    Poster: "4.jpg",
+    imdbRating: "9.3",
   },
   {
-    name: "Doctor Strange",
-    date: "2017",
-    url: "5.jpg",
-    imdb: "9",
+    Title: "Doctor Strange",
+    Released: "2017",
+    Poster: "5.jpg",
+    imdbRating: "9",
   },
   {
-    name: "Avengers Infinity War",
-    date: "2018",
-    url: "2.jpg",
-    imdb: "9.7",
+    Title: "Avengers Infinity War",
+    Released: "2018",
+    Poster: "2.jpg",
+    imdbRating: "9.7",
   },
   {
-    name: "Ironman",
-    date: "2012",
-    url: "1.jpg",
-    imdb: "8.7",
+    Title: "Ironman",
+    Released: "2012",
+    Poster: "1.jpg",
+    imdbRating: "8.7",
   },
 ];
 if (localStorage.getItem("movies") == null) {
@@ -80,13 +80,13 @@ function showMovies(m) {
   movies.forEach((el) => {
     let div = document.createElement("div");
     let pNAme = document.createElement("div");
-    pNAme.innerHTML = el.name;
+    pNAme.innerHTML = el.Title;
     let pDate = document.createElement("div");
-    pDate.innerHTML = el.date;
+    pDate.innerHTML = el.Released;
     let img = document.createElement("img");
-    img.src = el.url;
+    img.src = el.Poster;
     let pImdb = document.createElement("div");
-    pImdb.innerHTML = el.imdb;
+    pImdb.innerHTML = el.imdbRating;
     div.append(img, pNAme, pDate, pImdb);
     moviesDiv.append(div);
   });
@@ -104,13 +104,13 @@ logIn.addEventListener("click", function () {
 
 function sortLH() {
   let movies = JSON.parse(localStorage.getItem("movies"));
-  movies = movies.sort((a, b) => a.imdb - b.imdb);
+  movies = movies.sort((a, b) => a.imdbRating - b.imdbRating);
   console.log(movies);
   showMovies(movies);
 }
 function sortHL() {
   let movies = JSON.parse(localStorage.getItem("movies"));
-  movies = movies.sort((a, b) => b.imdb - a.imdb);
+  movies = movies.sort((a, b) => b.imdbRating - a.imdbRating);
   console.log(movies);
   showMovies(movies);
 }
@@ -120,6 +120,18 @@ async function searchbutton() {
   try {
     let res = await fetch(`http://www.omdbapi.com/?t=${input}&apikey=a693b6b`);
     let data = await res.json();
+    if (data.Response == "True") showMovies([data]);
+    else if (data.Response == "False") {
+      let movieFalse = [
+        {
+          Title: "No movies Found",
+          Released: "",
+          Poster: "error.jpg",
+          imdbRating: "",
+        },
+      ];
+      showMovies(movieFalse);
+    }
     console.log(data);
   } catch (err) {
     console.log(err);
