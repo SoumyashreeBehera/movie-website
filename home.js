@@ -87,8 +87,16 @@ function showMovies(m) {
     img.src = el.Poster;
     let pImdb = document.createElement("div");
     pImdb.innerHTML = el.imdbRating;
-    div.append(img, pNAme, pDate, pImdb);
-    moviesDiv.append(div);
+    if (Number(pImdb.innerHTML) > 8.5) {
+      let span = document.createElement("span");
+      span.innerHTML = "Recommended";
+      span.setAttribute("class", "makeItAbsolute");
+      div.append(span, img, pNAme, pDate, pImdb);
+      moviesDiv.append(div);
+    } else {
+      div.append(img, pNAme, pDate, pImdb);
+      moviesDiv.append(div);
+    }
   });
 }
 showMovies(JSON.parse(localStorage.getItem("movies")));
